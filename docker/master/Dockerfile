@@ -10,6 +10,7 @@ COPY mkdocs/setup_mkdocs.sh /
 
 RUN microdnf update -y && \
     microdnf install -y python3 python3-pip curl nano && \
+    microdnf install -y openmpi openmpi-devel && \
     pip install numpy pandas nltk matplotlib scikit-learn && \
     curl -fsSL https://code-server.dev/install.sh | sh && \
     mkdir -p /root/.config/code-server/ && \
