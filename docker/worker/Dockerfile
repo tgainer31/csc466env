@@ -8,6 +8,7 @@ RUN microdnf update -y && \
     microdnf install -y python3 python3-pip && \
     microdnf install -y openmpi openmpi-devel && \
     pip install numpy pandas nltk matplotlib scikit-learn && \
+    mircodnf install -y openssh openssh-server &&\
     microdnf clean all
     
 CMD ["/bin/bash", "/start-worker.sh"]
