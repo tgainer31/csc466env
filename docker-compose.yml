@@ -12,6 +12,8 @@ services:
       
   compute:
     image: compute:latest
+    ports:
+      - "22:22"
     volumes:
       - ../courses:/lectures # courses is a github repo containing lecture materials
       - ../csc466data:/data
