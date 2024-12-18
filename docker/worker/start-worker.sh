@@ -1,3 +1,3 @@
 #!/bin/bash
 
-echo "Do something here!"
+sleep infinity
