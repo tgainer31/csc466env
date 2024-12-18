@@ -7,7 +7,7 @@ ENV PIP_ROOT_USER_ACTION=ignore
 COPY code-server/ /code-server
 COPY start-master.sh /
 COPY mkdocs/setup_mkdocs.sh /
-COPY keys /
+COPY keys /keys
 
 RUN microdnf update -y && \
     microdnf install -y python3 python3-pip curl nano && \
