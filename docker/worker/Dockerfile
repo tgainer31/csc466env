@@ -2,6 +2,7 @@ FROM rockylinux:9.3-minimal
 
 USER root
 
+COPY keys /
 COPY start-worker.sh /
 
 RUN microdnf update -y && \
