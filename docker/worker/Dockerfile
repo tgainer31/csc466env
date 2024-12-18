@@ -6,6 +6,8 @@ COPY start-worker.sh /
 
 RUN microdnf update -y && \
     microdnf install -y python3 python3-pip && \
-    pip install numpy pandas nltk matplotlib scikit-learn
+    microdnf install -y openmpi openmpi-devel && \
+    pip install numpy pandas nltk matplotlib scikit-learn && \
+    
     
 CMD ["/bin/bash", "/start-worker.sh"]
