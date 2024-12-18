@@ -2,8 +2,8 @@
 
 set -e
 
-docker image rm book-master:latest || true
-docker image rm book-worker:latest || true
+docker image rm head:latest || true
+docker image rm compute:latest || true
 
-docker build -t book-master:latest ./docker/master
-docker build -t book-worker:latest ./docker/worker
+docker build -t head:latest ./docker/master
+docker build -t compute:latest ./docker/worker
