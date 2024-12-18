@@ -1,5 +1,5 @@
 services:
- head:
+  head:
     image: head:latest
     ports:
       - "8888:8888"
