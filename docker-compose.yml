@@ -1,19 +1,19 @@
 services:
-  master:
-    image: book-master:latest
+ head:
+    image: head:latest
     ports:
       - "8888:8888"
       - "8088:8088"
       - "8000:8000"
     volumes:
       - ../courses:/lectures # courses is a github repo containing lecture materials
-      - ../csc467data:/data
+      - ../csc466data:/data
       
-  worker:
-    image: book-worker:latest
+  compute:
+    image: compute:latest
     volumes:
       - ../courses:/lectures # courses is a github repo containing lecture materials
-      - ../csc467data:/data
+      - ../csc466data:/data
       
 networks:
   default:
