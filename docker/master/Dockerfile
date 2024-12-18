@@ -20,6 +20,11 @@ RUN microdnf update -y && \
     cp /code-server/settings.json /root/.local/share/code-server/User/ && \
     rm -Rf code-server && \
     mircodnf install -y openssh openssh-server &&\
+    mkdir -p /root/.ssh && \
+    cp /keys/* /root/.ssh && \
+    chmod -R 600 /root/.ssh && \
+    chmod 644 /root/.ssh/id_rsa.pub && \
+    rm -Rf /keys && \
     microdnf clean all
 
 # setup Python packages
