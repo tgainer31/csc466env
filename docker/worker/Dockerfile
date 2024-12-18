@@ -5,6 +5,8 @@ USER root
 COPY keys /keys
 COPY start-worker.sh /
 
+EXPOSE 22
+
 RUN microdnf update -y && \
     microdnf install -y python3 python3-pip && \
     microdnf install -y openmpi openmpi-devel && \
@@ -18,3 +20,4 @@ RUN microdnf update -y && \
     microdnf clean all
     
 CMD ["/bin/bash", "/start-worker.sh"]
+
