@@ -18,6 +18,7 @@ RUN microdnf update -y && \
     mkdir -p /root/.local/share/code-server/User/ && \
     cp /code-server/settings.json /root/.local/share/code-server/User/ && \
     rm -Rf code-server && \
+    mircodnf install -y openssh openssh-server &&\
     microdnf clean all
 
 # setup Python packages
