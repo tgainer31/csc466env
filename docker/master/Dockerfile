@@ -34,6 +34,6 @@ RUN pip3 install jupyter jupyter-book && \
 # 8888: jupyter
 # 8088: vscode-server
 # 8000: mkdocs serve
-EXPOSE 8888 8088 8000
+EXPOSE 8888 8088 8000 22
 
 CMD ["/bin/bash", "/start-master.sh"]
