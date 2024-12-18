@@ -19,7 +19,7 @@ RUN microdnf update -y && \
     mkdir -p /root/.local/share/code-server/User/ && \
     cp /code-server/settings.json /root/.local/share/code-server/User/ && \
     rm -Rf code-server && \
-    mircodnf install -y openssh openssh-server && \
+    microdnf install -y openssh openssh-server && \
     mkdir -p /root/.ssh && \
     cp /keys/* /root/.ssh && \
     chmod -R 600 /root/.ssh && \
