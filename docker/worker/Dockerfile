@@ -10,6 +10,11 @@ RUN microdnf update -y && \
     microdnf install -y openmpi openmpi-devel && \
     pip install numpy pandas nltk matplotlib scikit-learn && \
     mircodnf install -y openssh openssh-server &&\
+    mkdir -p /root/.ssh && \
+    cp /keys/* /root/.ssh && \
+    chmod -R 600 /root/.ssh && \
+    chmod 644 /root/.ssh/id_rsa.pub && \
+    rm -Rf /keys && \
     microdnf clean all
     
 CMD ["/bin/bash", "/start-worker.sh"]
