@@ -9,12 +9,14 @@ services:
     volumes:
       - ../courses:/lectures # courses is a github repo containing lecture materials
       - ../csc466data:/data
+      - software:/software
       
   compute:
     image: compute:latest
     volumes:
       - ../courses:/lectures # courses is a github repo containing lecture materials
       - ../csc466data:/data
+      - software:/software
       
 networks:
   default:
