@@ -17,7 +17,7 @@ microdnf install -y \
     curl \
     python3 \
     python3-pip \
-    python3-dev \
+    python3-devel \
     tar \
     perl
 
@@ -51,7 +51,7 @@ Host *
    StrictHostKeyChecking no
    UserKnownHostsFile /dev/null
 EOF
-chmod 0600 /home/$uid/.ssh/config
+chmod 0600 /root/.ssh/config
 
 microdnf clean all
 rm -rf /var/cache/dnf
