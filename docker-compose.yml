@@ -1,22 +1,33 @@
 services:
+  base:
+    build:
+      context: ./docker/base
+      tags:
+        - "linhbngo/csc466:base-latest"
   head:
-    image: head:latest
+    build:
+      context: ./docker/master
+      tags:
+        - "linhbngo/csc466:head-latest"
+    image: linhbngo/csc466:head-latest
     ports:
-      - "8888:8888"
-      - "8088:8088"
-      - "8000:8000"
-      - "22:22"
+      - "18088:8088"
+      - "18000:8000"
+      - "2222:22"
     volumes:
       - ../courses:/lectures # courses is a github repo containing lecture materials
       - ../csc466data:/data
-      - software:/software
-      
+    expose:
+      - "22"
   compute:
-    image: compute:latest
+    build:
+      context: ./docker/worker
+      tags:
+        - "linhbngo/csc466:compute-latest"
+    image: linhbngo/csc466:compute-latest
     volumes:
       - ../courses:/lectures # courses is a github repo containing lecture materials
       - ../csc466data:/data
-      - software:/software
       
 networks:
   default:
