@@ -4,6 +4,7 @@ services:
       context: ./docker/base
       tags:
         - "linhbngo/csc466:base-latest"
+
   head:
     build:
       context: ./docker/master
@@ -19,16 +20,45 @@ services:
       - ../csc466data:/data
     expose:
       - "22"
-  compute:
+    hostname: head
+    container_name: head
+    networks:
+      - compute
+
+  compute01:
     build:
       context: ./docker/worker
       tags:
         - "linhbngo/csc466:compute-latest"
+    init: true
     image: linhbngo/csc466:compute-latest
     volumes:
       - ../courses:/lectures # courses is a github repo containing lecture materials
       - ../csc466data:/data
+    expose:
+      - "22"
+    hostname: compute01
+    container_name: compute01
+    networks:
+      - compute
+
+  compute02:
+    build:
+      context: ./docker/worker
+      tags:
+        - "linhbngo/csc466:compute-latest"
+    init: true
+    image: linhbngo/csc466:compute-latest
+    volumes:
+      - ../courses:/lectures # courses is a github repo containing lecture materials
+      - ../csc466data:/data
+    expose:
+      - "22"
+    hostname: compute02
+    container_name: compute02
+    networks:
+      - compute
       
 networks:
-  default:
-    driver: bridge
+  compute:
+    name: compute
