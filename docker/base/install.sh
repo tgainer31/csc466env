@@ -4,6 +4,7 @@ set -e
 microdnf update -y
 microdnf install -y \
     openssh-server \
+    openssh-clients \
     sudo \
     epel-release \
     wget \
