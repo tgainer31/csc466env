@@ -10,6 +10,7 @@ services:
       context: ./docker/master
       tags:
         - "linhbngo/csc466:head-latest"
+    init: true
     image: linhbngo/csc466:head-latest
     ports:
       - "18088:8088"
