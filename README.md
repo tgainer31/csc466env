@@ -29,8 +29,9 @@ Host *
 EOF
     chmod 0600 /home/$uid/.ssh/config
     cp /etc/skel/.bash* /home/$uid
-    chown -R $idnumber:$idnumber /home/$uid
 ~~~
+
+After this is done, update `.gitignore` so that temporary files generated in home are not included. 
 
 ### Build mkdocs server (for instructor)
 
