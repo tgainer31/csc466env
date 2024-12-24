@@ -44,6 +44,10 @@ services:
     container_name: compute01
     networks:
       - compute
+    deploy:
+      resources:
+        limits:
+          cpus: 2
 
   compute02:
     build:
@@ -62,6 +66,10 @@ services:
     container_name: compute02
     networks:
       - compute
+    deploy:
+      resources:
+        limits:
+          cpus: 2
       
 networks:
   compute:
