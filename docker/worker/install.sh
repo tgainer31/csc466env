@@ -5,3 +5,5 @@ source /opt/env/python3/bin/activate
 pip install numpy matplotlib 
     
 cp /build/entrypoint.sh /usr/local/bin/entrypoint.sh
+chmod 755 /usr/local/bin/entrypoint.sh  
+

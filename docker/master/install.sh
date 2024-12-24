@@ -13,4 +13,4 @@ pip install numpy matplotlib jupyter
 pip install jupyter-book mkdocs-material markdown-include mkdocs-table-reader-plugin   
 
 cp /build/entrypoint.sh /usr/local/bin/entrypoint.sh
-    
+chmod 755 /usr/local/bin/entrypoint.sh  
