@@ -18,6 +18,7 @@ services:
     volumes:
       - ../courses:/lectures # courses is a github repo containing lecture materials
       - ../csc466data:/data
+      - ./home:/home
     expose:
       - "22"
     hostname: head
@@ -35,6 +36,7 @@ services:
     volumes:
       - ../courses:/lectures # courses is a github repo containing lecture materials
       - ../csc466data:/data
+      - ./home:/home
     expose:
       - "22"
     hostname: compute01
@@ -52,6 +54,7 @@ services:
     volumes:
       - ../courses:/lectures # courses is a github repo containing lecture materials
       - ../csc466data:/data
+      - ./home:/home
     expose:
       - "22"
     hostname: compute02

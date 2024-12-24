@@ -51,58 +51,6 @@ chgrp ssh_keys /etc/ssh/ssh_host_ed25519_key
 
 sed -i 's/ChallengeResponseAuthentication no/ChallengeResponseAuthentication yes/' /etc/ssh/sshd_config
 
-
-#------------------------
-# Setup LDAP and SSSD
-#------------------------
-log_info "Configuring LDAP and SSSD"
-authselect select sssd --force
-
-cat > /etc/openldap/ldap.conf <<EOF
-TLS_CACERTDIR /etc/openldap/cacerts
-TLS_REQCERT never
-SASL_NOCANON	on
-URI ldaps://ldap:636
-BASE dc=example,dc=org
-EOF
-
-cat > /etc/sssd/sssd.conf <<EOF
-[domain/default]
-reconnection_retries = 10
-offline_timeout = 1
-debug_level = 2
-autofs_provider = ldap
-ldap_schema = rfc2307bis
-ldap_group_member = member
-ldap_search_base = dc=example,dc=org
-id_provider = ldap
-auth_provider = ldap
-chpass_provider = ldap
-sudo_provider = none
-ldap_uri = ldaps://ldap:636
-cache_credentials = True
-ldap_tls_reqcert = never
-ldap_default_bind_dn = cn=admin,dc=example,dc=org
-ldap_default_authtok = admin
-
-[sssd]
-debug_level = 2
-services = nss, pam
-domains = default
-
-[nss]
-reconnection_retries = 10
-debug_level = 2
-homedir_substring = /home
-
-[pam]
-reconnection_retries = 10
-debug_level = 2
-EOF
-
-chmod 600 /etc/sssd/sssd.conf
-rm -f /var/run/nologin
-
 #------------------------------------------
 # Install OpenMPI and other Python packages
 #------------------------------------------
@@ -133,29 +81,14 @@ pip install mpi4py
 #------------------------
 
 idnumber=1001
-for uid in hpcadmin $USERS
+for uid in $USERS
 do
     log_info "Bootstrapping $uid user account.."
-    install -d -o $idnumber -g $idnumber -m 0700 /home/$uid
-    install -d -o $idnumber -g $idnumber -m 0700 /home/$uid/.ssh
-    ssh-keygen -b 2048 -t rsa -f /home/$uid/.ssh/id_rsa -q -N ""
-    install -o $idnumber -g $idnumber -m 0600 /home/$uid/.ssh/id_rsa.pub /home/$uid/.ssh/authorized_keys
-    cat > /home/$uid/.ssh/config <<EOF
-Host *
-   StrictHostKeyChecking no
-   UserKnownHostsFile /dev/null
-EOF
-    chmod 0600 /home/$uid/.ssh/config
-    cp /etc/skel/.bash* /home/$uid
-    chown -R $idnumber:$idnumber /home/$uid
+    adduser --home-dir /home/$uid --shell /bin/bash --uid $idnumber $uid    
+    echo "$uid ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/$uid
+    chmod 0440 /etc/sudoers.d/$uid
     idnumber=$((idnumber + 1))
 done
-
-sudo tee /etc/sudoers.d/90-hpcadmin <<EOF
-# User rules for hpcadmin
-hpcadmin ALL=(ALL) NOPASSWD:ALL
-EOF
-chmod 0440 /etc/sudoers.d/90-hpcadmin
 
 #------------------------
 # Install gosu

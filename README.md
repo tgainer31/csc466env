@@ -15,6 +15,23 @@ A template to support development of containerization learning materials
 .\build.bat
 ~~~
 
+### Setup user
+
+This is done manually after building the base
+
+~~~bash
+ssh-keygen -b 2048 -t rsa -f /home/$uid/.ssh/id_rsa -q -N ""
+    install -o $idnumber -g $idnumber -m 0600 /home/$uid/.ssh/id_rsa.pub /home/$uid/.ssh/authorized_keys
+    cat > /home/$uid/.ssh/config <<EOF
+Host *
+   StrictHostKeyChecking no
+   UserKnownHostsFile /dev/null
+EOF
+    chmod 0600 /home/$uid/.ssh/config
+    cp /etc/skel/.bash* /home/$uid
+    chown -R $idnumber:$idnumber /home/$uid
+~~~
+
 ### Build mkdocs server (for instructor)
 
 `mkdocs serve --dev-addr=0.0.0.0:8000` to support external view of mkdocs
