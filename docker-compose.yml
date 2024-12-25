@@ -18,7 +18,6 @@ services:
       - "2222:22"
     volumes:
       - ../courses:/lectures # courses is a github repo containing lecture materials
-      - ../csc466data:/data
       - ./home:/home
     expose:
       - "22"
@@ -36,7 +35,6 @@ services:
     image: linhbngo/csc466:compute-latest
     volumes:
       - ../courses:/lectures # courses is a github repo containing lecture materials
-      - ../csc466data:/data
       - ./home:/home
     expose:
       - "22"
@@ -58,7 +56,6 @@ services:
     image: linhbngo/csc466:compute-latest
     volumes:
       - ../courses:/lectures # courses is a github repo containing lecture materials
-      - ../csc466data:/data
       - ./home:/home
     expose:
       - "22"
