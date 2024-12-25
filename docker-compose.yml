@@ -4,7 +4,8 @@ services:
       context: ./docker/base
       tags:
         - "linhbngo/csc466:base-latest"
-
+  image: linhbngo/csc466:base-latest
+  
   head:
     build:
       context: ./docker/master
