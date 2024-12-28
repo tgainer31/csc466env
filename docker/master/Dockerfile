@@ -1,8 +1,8 @@
 FROM linhbngo/csc466:base-latest AS final
 
-USER root
+USER student
 
-COPY . /build
-RUN chmod -R 755 /build/*.sh && /build/install.sh && rm -rf /build
+COPY . /home/student/build
+RUN chmod -R 755 /home/student/build/*.sh && /home/student/build/install.sh && rm -rf /home/student/build
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
