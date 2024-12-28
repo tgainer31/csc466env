@@ -1,16 +1,12 @@
 #!/bin/bash
 
 # setup code server
-curl -fsSL https://code-server.dev/install.sh | sh
-#mkdir -p /root/.config/code-server/ 
-#cp /build/code-server/config.yaml /root/.config/code-server/config.yaml
-#mkdir -p /root/.local/share/code-server/User/ && \
-#cp /build/code-server/settings.json /root/.local/share/code-server/User/ 
+sudo sh /home/student/build/code-server.sh --prefix=/usr/local/
 
 # setup Python packages
 source /opt/env/python3/bin/activate
-pip install numpy matplotlib jupyter 
-pip install jupyter-book mkdocs-material markdown-include mkdocs-table-reader-plugin   
+sudo pip install jupyter 
+sudo pip install jupyter-book mkdocs-material markdown-include mkdocs-table-reader-plugin   
 
-cp /build/entrypoint.sh /usr/local/bin/entrypoint.sh
-chmod 755 /usr/local/bin/entrypoint.sh  
+sudo cp /home/student/build/entrypoint.sh /usr/local/bin/entrypoint.sh
+sudo chmod 755 /usr/local/bin/entrypoint.sh  
