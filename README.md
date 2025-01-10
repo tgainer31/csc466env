@@ -4,15 +4,13 @@ A template to support development of containerization learning materials
 ## Notes:
 
 ### Building the images
-- If you are on a Mac/Linux machine, you only need to run the following to automate the build process
-~~~
-./build.sh
-~~~
 
-- If you are on a Windows machine, run the following:
-
+- You should build the images in the following order:
 ~~~
-.\build.bat
+docker compose build base --no-cache
+docker compose build head --no-cache
+docker compose build compute01 --no-cache
+docker compose build compute02 --no-cache
 ~~~
 
 ### Setup user
