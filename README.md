@@ -13,6 +13,15 @@ docker compose build compute01 --no-cache
 docker compose build compute02 --no-cache
 ~~~
 
+### Launching the cluster
+
+- You should launch in the following order:
+~~~
+docker compose up head
+docker compose up compute01
+docker compose up compute02
+~~~
+
 ### Setup user
 
 This is done manually after building the base
