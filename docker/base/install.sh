@@ -130,3 +130,6 @@ update-ca-trust extract
 
 microdnf clean all
 rm -rf /var/cache/dnf
+
+cp /build/entrypoint.sh /usr/local/bin/entrypoint.sh
+chmod 755 /usr/local/bin/entrypoint.sh
