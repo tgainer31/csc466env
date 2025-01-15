@@ -28,12 +28,8 @@ services:
       - compute
 
   compute01:
-    build:
-      context: ./docker/worker
-      tags:
-        - "linhbngo/csc466:compute-latest"
     init: true
-    image: linhbngo/csc466:compute-latest
+    image: linhbngo/csc466:base-latest
     volumes:
       - ../courses:/lectures # courses is a github repo containing lecture materials
       - ./home:/home
@@ -49,12 +45,8 @@ services:
           cpus: 2
 
   compute02:
-    build:
-      context: ./docker/worker
-      tags:
-        - "linhbngo/csc466:compute-latest"
     init: true
-    image: linhbngo/csc466:compute-latest
+    image: linhbngo/csc466:base-latest
     volumes:
       - ../courses:/lectures # courses is a github repo containing lecture materials
       - ./home:/home
