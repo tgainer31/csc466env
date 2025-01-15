@@ -18,9 +18,9 @@ docker compose build compute02 --no-cache
 
 - You should launch in the following order:
 ~~~
-docker compose up head
-docker compose up compute01
-docker compose up compute02
+docker compose up -d head
+docker compose up -d compute01
+docker compose up -d compute02
 ~~~
 
 ### Setup user
