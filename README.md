@@ -1,4 +1,5 @@
-# interactive_book
+# CSC466 Cluster
+
 A template to support development of containerization learning materials
 
 ## Notes:
