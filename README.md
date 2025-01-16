@@ -10,8 +10,6 @@ A template to support development of containerization learning materials
 ~~~
 docker compose build base --no-cache
 docker compose build head --no-cache
-docker compose build compute01 --no-cache
-docker compose build compute02 --no-cache
 ~~~
 
 ### Pushing the images
