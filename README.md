@@ -28,21 +28,19 @@ docker compose up -d compute01
 docker compose up -d compute02
 ~~~
 
-### Setup user
+### Test
 
-This is done manually after building the base
+- Access the VSCode server via http://127.0.0.1:18088/
+    - Password is **goldenrams** 
+- Open a terminal
+- Test the environment as follows:
 
-~~~bash
-ssh-keygen -b 2048 -t rsa -f /home/$uid/.ssh/id_rsa -q -N ""
-    install -o $idnumber -g $idnumber -m 0600 /home/$uid/.ssh/id_rsa.pub /home/$uid/.ssh/authorized_keys
-    cat > /home/$uid/.ssh/config <<EOF
-Host *
-   StrictHostKeyChecking no
-   UserKnownHostsFile /dev/null
-EOF
-    chmod 0600 /home/$uid/.ssh/config
-    cp /etc/skel/.bash* /home/$uid
 ~~~
+mpicc -o hello mpi_hello_world.c 
+mpirun --host compute01:2,compute02:2 -np 4 ./hello
+~~~
+
+
 
 After this is done, update `.gitignore` so that temporary files generated in home are not included. 
 
